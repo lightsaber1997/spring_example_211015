@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.example.lesson03.dao.ReviewDAO">
+ 	<select id="selectReview"  resultType="com.example.lesson03.model.Review">
+ 		select
+ 			`id` ,
+			`storeId`,
+			`menu`,
+			`userName`,
+			`point`,
+			`review`,
+			`createdAt`,
+			`updatedAt`
+		from
+			`new_review`
+		where 
+			`id` = #{id}
+ 	</select>
+ 	<insert id="insertReview" parameterType="com.example.lesson03.model.Review">
+		insert into new_review
+		(
+			storeId,
+			menu,
+			userName,
+			point,
+			review,
+			createdAt,
+			updatedAt
+		)
+		values
+		(
+			#{storeId},
+			#{menu},
+			#{userName},
+			#{point},
+			#{review},
+			NOW(),
+			NOW()
+		) 	
+ 	</insert>
+ 	
+ 	<insert id="insertReviewAsField" parameterType="map">
+		insert into new_review
+		(
+			storeId,
+			menu,
+			userName,
+			point,
+			review,
+			createdAt,
+			updatedAt
+		)
+		values
+		(
+			#{storeId},
+			#{menu},
+			#{userName},
+			#{point},
+			#{review},
+			NOW(),
+			NOW()
+		) 	
+ 	</insert>
+ 	<update id="updateReviewById" parameterType="map">
+ 		update `new_review`
+ 		set
+ 			`review` = #{review},
+ 			`updatedAt` = NOW()
+ 		where
+ 			`id` = #{id}
+ 	</update>
+ 	<delete id="deleteReviewById" parameterType="int">
+ 		delete
+ 		from 
+ 			`new_review`
+ 		where 
+ 			`id` = #{id}
+ 	</delete>
+ </mapper>
