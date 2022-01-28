@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/lesson05")
+@RequestMapping("	")
 @Controller
 public class Lesson05Controller {
 	@RequestMapping("/ex01")
@@ -52,5 +52,10 @@ public class Lesson05Controller {
 		Date today = new Date();
 		model.addAttribute("today", today);
 		return "lesson05/ex03";
+	}
+	
+	@RequestMapping("/ex04")
+	public String ex04(Model model) {
+		return "lesson05/ex04";
 	}
 }
